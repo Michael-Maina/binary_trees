@@ -9,14 +9,15 @@
 
 int binary_tree_balance(const binary_tree_t *tree)
 {
-	int l_height, r_height = 0;
+	int l_height = 1, r_height = 1;
 
 	if (!tree)
 		return (0);
 
-	l_height = tree->left ? 1 + binary_tree_balance(tree->left) : 0;
-	r_height = tree->right ? 1 + binary_tree_balance(tree->right) : 0;
+	l_height += binary_tree_balance(tree->left);
+	r_height += binary_tree_balance(tree->right);
 
+	printf("Parent: %d, Left: %d, Right: %d\n",tree->n, l_height, r_height);
 	return (l_height - r_height);
 
 }
